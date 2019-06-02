@@ -9,3 +9,17 @@ GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <
 df <- read_excel(tf)
  #View(df)
 
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    x <- df[[df$ObstacleName]]
+    y <- df[[nrow(df$input)]]
+    
+    title <- paste0(
+      "American Ninja Warrior in", input
+    )
+    
+    ggplot(data = df) +
+      geom_bar(mapping = aes( x = x, y = y)) +
+      
+  })
+}
