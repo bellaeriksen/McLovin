@@ -1,0 +1,5 @@
+library("httr")
+library("readxl")
+GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
+df <- read_excel(tf)
+View(df)
