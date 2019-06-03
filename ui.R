@@ -6,12 +6,13 @@ source("server.R")
 
 getLocation <- df %>% select("Location")
 uniqueLocation <- unique(getLocation)
+uniqueList <- uniqueLocation$Location
 
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       radioButtons("selectPlace", label = h3("Location"),
-                   choices = (uniqueLocation), selected = 1)
+                   choices = (uniqueList), selected = uniqueList[1])
     ),
     mainPanel(plotOutput("plot"))
   )
