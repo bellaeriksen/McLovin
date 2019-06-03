@@ -10,16 +10,16 @@ df <- read_excel(tf)
  #View(df)
 
 server <- function(input, output) {
-  data <- input$selectPlace
   output$plot <- renderPlot({
-    plot(data$)
+    place <- input$selectPlace
+    plot(rnorm(place))
     
-    title <- paste0(
-      "American Ninja Warrior in", input$selectPlace, "."
-    )
-    
-    ggplot(data = df) +
-      geom_bar(mapping = aes(x = , y = )) +
-      
+  #   title <- paste0(
+  #     "American Ninja Warrior in", input$selectPlace, "."
+  #   )
+  #   
+  #   ggplot(data = df) +
+  #     geom_bar(mapping = aes(x = , y = )) +
+  #     
   })
 }
