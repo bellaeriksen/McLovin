@@ -9,6 +9,7 @@ uniqueLocation <- unique(getLocation)
 uniqueList <- uniqueLocation$Location
 
 ui <- fluidPage(
+  theme = shinytheme("darkly"),
   sidebarLayout(
     sidebarPanel(
       selectInput("selectPlace", label = h3("Select Location"),
