@@ -11,7 +11,7 @@ uniqueList <- uniqueLocation$Location
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
-      radioButtons("selectPlace", label = h3("Location"),
+      selectInput("selectPlace", label = h3("Select Location"),
                    choices = c(uniqueList), selected = uniqueList[1])
     ),
     mainPanel(plotOutput("plot"))
