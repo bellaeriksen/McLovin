@@ -14,15 +14,15 @@ server <- function(input, output) {
     #place <- input$selectPlace
     data <- input$selectPlace %>% select("Obstacle Name")
     x <- df[[data]]
+    num <- add_count(data, "Obstacle Name")
+    y <- num
     
-    y <- df[[]]
-    
-  #   title <- paste0(
-  #     "American Ninja Warrior in", input$selectPlace, "."
-  #   )
-  #   
-  #   ggplot(data = df) +
-  #     geom_bar(mapping = aes(x = , y = )) +
-  #     
+     title <- paste0(
+       "American Ninja Warrior in", input$selectPlace, "."
+     )
+     
+     ggplot(data = df) +
+      geom_col(mapping = aes(x = x, y = num))
+       
   })
 }
