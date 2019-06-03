@@ -19,7 +19,7 @@ server <- function(input, output) {
     )
     
     ggplot(data = df) +
-      geom_bar(mapping = aes( x = x, y = y)) +
+      geom_bar(mapping = aes(x = x, y = y)) +
       
   })
 }
