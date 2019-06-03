@@ -13,15 +13,14 @@ server <- function(input, output) {
   output$plot <- renderPlot({
     #place <- input$selectPlace
     data <- input$selectPlace %>% select("Obstacle Name")
-    x <- df[[data]]
-    num <- add_count(data, "Obstacle Name")
-    y <- num
+    x <- unique(data)
+    y <- add_count(data, "Obstacle Name")
     
      title <- paste0(
        "American Ninja Warrior in", input$selectPlace, "."
      )
      
-     ggplot(data = df) +
+     ggplot() +
       geom_col(mapping = aes(x = x, y = num))
        
   })
