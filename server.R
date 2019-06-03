@@ -10,16 +10,16 @@ df <- read_excel(tf)
  #View(df)
 
 server <- function(input, output) {
+  data <- input$selectPlace
   output$plot <- renderPlot({
-    x <- df[[df$ObstacleName]]
-    y <- df[[nrow(df$input)]]
+    plot(data$)
     
     title <- paste0(
-      "American Ninja Warrior in", input
+      "American Ninja Warrior in", input$selectPlace, "."
     )
     
     ggplot(data = df) +
-      geom_bar(mapping = aes(x = x, y = y)) +
+      geom_bar(mapping = aes(x = , y = )) +
       
   })
 }
