@@ -11,8 +11,11 @@ df <- read_excel(tf)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
-    place <- input$selectPlace
-    plot(rnorm(place))
+    #place <- input$selectPlace
+    data <- input$selectPlace %>% select("Obstacle Name")
+    x <- df[[data]]
+    
+    y <- df[[]]
     
   #   title <- paste0(
   #     "American Ninja Warrior in", input$selectPlace, "."
