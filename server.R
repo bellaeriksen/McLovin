@@ -11,8 +11,8 @@ df <- read_excel(tf)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
-    #place <- input$selectPlace
-    data <- input$selectPlace %>% select("Obstacle Name")
+    data_frame <- as.data.frame(input$selectPlace)
+    data <- df %>% data_frame %>% select("Obstacle Name")
     x <- df[[data]]
     num <- add_count(data, "Obstacle Name")
     y <- num
