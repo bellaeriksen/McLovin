@@ -7,7 +7,7 @@ library("httr")
 library("readxl")
 GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
 df <- read_excel(tf)
- View(df)
+#View(df)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
@@ -18,18 +18,17 @@ server <- function(input, output) {
     ## x <- df[[data]]
     ## num <- add_count(data, "Obstacle Name")
     ## y <- num
-    x <- unique(data)
-    y <- tally(data, "Obstacle Name", sort = FALSE)
+    x <- unique(data$"Obstacle Name")
+    y <- tally(as.data.table(data$"Obstacle Name"), wt = FALSE, sort = FALSE)
 
     
-     title <- paste0(
-       "American Ninja Warrior in", input$selectPlace, "."
-     )
+     #title <- paste0(
+      # "American Ninja Warrior in", input$selectPlace, "."
+     #)
      
-    plot <- ggplot(data, aes(x = x, y = num)) +
-      geom_col(stat = "identity")
-     print(plot)
+   # plot <- ggplot(data, aes(x = x, y = num)) +
+    #  geom_col(stat = "identity")
+    # print(plot)
        
-     #hist(x, breaks = y, col = 'darkgray', border = 'white')
   })
 }
