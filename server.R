@@ -11,22 +11,17 @@ df <- read_excel(tf)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
-
     data_frame <- as.data.frame(input$selectPlace)
     data <- data_frame %>% df %>% select("Obstacle Name")
     ##x <- df[[data]]
     ##num <- add_count(data, "Obstacle Name")
     ## y <- num
     x <- unique(data)
-    y <- add_count(data, "Obstacle Name")
-
-    
-     title <- paste0(
-       "American Ninja Warrior in", input$selectPlace, "."
-     )
-     
-     ggplot() +
-      geom_col(mapping = aes(x = x, y = num))
-       
+    y <- count(data, "Obstacle Name")
+    title <- paste0(
+      "American Ninja Warrior in", input$selectPlace, "."
+    )
+    ggplot(mapping = aes(x = x, y = num)) +
+    geom_col()
   })
 }
