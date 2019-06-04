@@ -10,6 +10,8 @@
 ##if (!require("readxl")) {
   install.packages("readxl")
 ##}
+install.packages("tidyverse")
+library("tidyverse")
 library("dplyr")
 library("ggplot2")
 library("httr")
@@ -21,7 +23,14 @@ df <- read_excel(tf)
 getLocation <- df %>% select("Location")
 uniqueLocation <- unique(getLocation)
 uniqueList <- uniqueLocation$Location
-uniqueList[1]
+
+#View(getLocation)
+obstacles <- df$`Obstacle Name`
+View(obstacles)
+as.data.frame(table(obstacles))
+
+View(df)
+
 
 
 
