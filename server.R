@@ -11,18 +11,19 @@ df <- read_excel(tf)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
-    data <- df %>% filter("Location" == input$selectPlace)
-    ##x <- unique(data)
+    data <- df %>% select("Location", "Obstacle Name") %>% 
+            filter("Location" == input$selectPlace)
+    x <- unique(data$`Obstacle Name`)
     ##y <- tally(data, "Obstacle Name")
-
-    
-     ##title <- paste0(
-       ##"American Ninja Warrior in", input$selectPlace, "."
-     ##)
+    y <- sum(data$`Obstacle Name` == "Obstacle Name")
+  
+     title <- paste0(
+       "American Ninja Warrior in", input$selectPlace, "."
+     )
      
-    ##plot <- ggplot(data, aes(x = x, y = num)) +
-      ##geom_col(stat = "identity")
-     ##print(plot)
+    plot <- ggplot(data, aes(x = x, y = y)) +
+      geom_col()
+     print(plot)
        
      #hist(x, breaks = y, col = 'darkgray', border = 'white')
   })
