@@ -9,7 +9,7 @@ uniqueLocation <- unique(getLocation)
 uniqueList <- uniqueLocation$Location
 
 ui <- navbarPage(
-  titlePanel("American Ninja Warrior"),
+  "American Ninja Warrior",
   theme = shinytheme("darkly"),
   tabPanel("Obstacles in your Locality", fluidPage(
     sidebarLayout(

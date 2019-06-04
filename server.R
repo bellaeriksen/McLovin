@@ -12,21 +12,24 @@ df <- read_excel(tf)
 server <- function(input, output) {
   output$plot <- renderPlot({
 
-    data_frame <- as.data.frame(input$selectPlace)
-    data <- data_frame %>% df %>% select("Obstacle Name")
-    ##x <- df[[data]]
-    ##num <- add_count(data, "Obstacle Name")
+    # data_frame <- as.data.frame(input$selectPlace)
+    # data <- data_frame %>% select("Obstacle Name")
+    data <- df %>% select(Location = input$selectPlace)
+    ## x <- df[[data]]
+    ## num <- add_count(data, "Obstacle Name")
     ## y <- num
     x <- unique(data)
-    y <- add_count(data, "Obstacle Name")
+    y <- tally(data, "Obstacle Name", sort = FALSE)
 
     
      title <- paste0(
        "American Ninja Warrior in", input$selectPlace, "."
      )
      
-     ggplot() +
-      geom_col(mapping = aes(x = x, y = num))
+    plot <- ggplot(data, aes(x = x, y = num)) +
+      geom_col(stat = "identity")
+     print(plot)
        
+     #hist(x, breaks = y, col = 'darkgray', border = 'white')
   })
 }
