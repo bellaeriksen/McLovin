@@ -8,6 +8,10 @@ getLocation <- df %>% select("Location")
 uniqueLocation <- unique(getLocation)
 uniqueList <- uniqueLocation$Location
 
+getCompetition <- df %>% select("Round/Stage")
+theRound <- unique(getCompetition)
+uniqueRounds <- theRound$`Round/Stage`
+
 ui <- navbarPage(
   "American Ninja Warrior",
   theme = shinytheme("darkly"),
@@ -15,7 +19,9 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         selectInput("selectPlace", label = h3("Select Location"),
-                   choices = c(uniqueList), selected = uniqueList[1])
+                   choices = c(uniqueList), selected = uniqueList[1]),
+        selectInput("selectRound", label = h3("Select Round"),
+                    choices = c(uniqueRounds), selected = uniqueRounds[1])
       ),
     mainPanel(plotOutput("plot"))
     )
