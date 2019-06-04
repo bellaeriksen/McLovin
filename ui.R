@@ -11,7 +11,7 @@ uniqueList <- uniqueLocation$Location
 ui <- navbarPage(
   "American Ninja Warrior",
   theme = shinytheme("darkly"),
-  tabPanel("Obstacles in your Locality", fluidPage(
+  tabPanel("Obstacles in Your Locality", fluidPage(
     sidebarLayout(
       sidebarPanel(
         selectInput("selectPlace", label = h3("Select Location"),
