@@ -7,14 +7,14 @@ library("httr")
 library("readxl")
 GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
 df <- read_excel(tf)
- #View(df)
+ View(df)
 
 server <- function(input, output) {
   output$plot <- renderPlot({
 
     # data_frame <- as.data.frame(input$selectPlace)
     # data <- data_frame %>% select("Obstacle Name")
-    data <- df %>% select(Location = input$selectPlace)
+    data <- df %>% filter(Location == input$selectPlace)
     ## x <- df[[data]]
     ## num <- add_count(data, "Obstacle Name")
     ## y <- num
