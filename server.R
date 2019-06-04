@@ -13,12 +13,12 @@ server <- function(input, output) {
   output$plot <- renderPlot({
     # data_frame <- as.data.frame(input$selectPlace)
     # data <- data_frame %>% select("Obstacle Name")
-    data <- df %>% filter(Location == input$selectPlace)
+    data <- df %>% select("Location" == input$selectPlace)
     ## x <- df[[data]]
     ## num <- add_count(data, "Obstacle Name")
     ## y <- num
     x <- unique(data)
-    y <- tally(data, "Obstacle Name", sort = FALSE)
+    y <- tally(data, "Obstacle Name")
 
     
      title <- paste0(
