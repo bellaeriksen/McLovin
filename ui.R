@@ -4,9 +4,9 @@ library("shiny")
 library("shinythemes")
 source("server.R")
 
-getLocation <- df %>% select("Location")
-uniqueLocation <- unique(getLocation)
-uniqueList <- uniqueLocation$Location
+getObstacle <- df %>% select("Obstacle Name")
+uniqueObstacle <- unique(getObstacle)
+uniqueList <- uniqueObstacle$`Obstacle Name`
 
 getCompetition <- df %>% select("Round/Stage")
 theRound <- unique(getCompetition)
@@ -18,10 +18,10 @@ ui <- navbarPage(
   tabPanel("Obstacles in Your Locality", fluidPage(
     sidebarLayout(
       sidebarPanel(
-        selectInput("selectPlace", label = h3("Select Location"),
-                   choices = c(uniqueList), selected = uniqueList[1]),
-        selectInput("selectRound", label = h3("Select Round"),
-                    choices = c(uniqueRounds), selected = uniqueRounds[1])
+        selectInput("selectObstacle", label = h3("Select Obstacle"),
+                   choices = c(uniqueList), selected = uniqueList[1])
+        #selectInput("selectRound", label = h3("Select Round"),
+                    #choices = c(uniqueRounds), selected = uniqueRounds[1])
       ),
     mainPanel(plotOutput("plot"))
     )

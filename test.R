@@ -31,6 +31,10 @@ as.data.frame(table(obstacles))
 
 View(df)
 
+data <- df %>% select("Location", "Obstacle Name") %>% 
+  filter(`Obstacle Name` == "Quad Steps")
+View(data)
+
 
 
 

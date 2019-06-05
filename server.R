@@ -8,16 +8,17 @@ library("readxl")
 GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
 df <- read_excel(tf)
  View(df)
- 
- #data <- df %>% select("Location", "Obstacle Name") %>% 
-   #filter("Venice" == Location)
        
 server <- function(input, output) {
   output$plot <- renderPlot({
     data <- df %>% select("Location", "Obstacle Name") %>% 
-            filter(Location == input$selectPlace)
-    x <- unique(data$`Obstacle Name`)
-    y <- sum(data$`Obstacle Name` == "Obstacle Name")
+            filter(`Obstacle Name` == input$selectObstacle)
+    
+    x <- unique(data$`Location`)
+
+    # How to count for the number of Locations this Obstacle appears in!?
+    # y <- count(data, data$`Obstacle Name` == "Obstacle Name", data$Location ==  'Location')
+    y <- data %>% () 
         
     title <- paste0(
       "American Ninja Warrior in", input$selectPlace, "."
@@ -27,6 +28,6 @@ server <- function(input, output) {
       geom_col()
     print(plot)
        
-     #hist(x, breaks = y, col = 'darkgray', border = 'white')
+    #hist(x, breaks = y, col = 'darkgray', border = 'white')
   })
 }
