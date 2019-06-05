@@ -8,7 +8,7 @@ library("readxl")
 GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
 df <- read_excel(tf)
        
-## this will filter the count for the Locations this Obstacle/season appears in!?
+## this will filter the count for the Locations this Obstacle/season appears in
 server <- function(input, output) {
   output$intro <- renderText({
     "We worked with the American Ninja Warrior Obstacle History dataset, which we obtained
@@ -38,6 +38,8 @@ server <- function(input, output) {
 "
   })
   
+  # creates the bar graph plot that allows user to select obstacle and the seasons,
+  # returns a graph that shows the number of locations that occur given the location and seasons
   output$plot <- renderPlot({
     filtered <- df %>%
       rename(ObstacleName = "Obstacle Name") %>% 
@@ -52,7 +54,7 @@ server <- function(input, output) {
       )
     plot
   })
-  
+  # renders a text output that describes the bar graph
   output$text2 <- renderText({
     paste("This bar graph gives a visual representation of the number of localities 
            that appeared with each obstacle and range of season in the history of 
@@ -61,21 +63,14 @@ server <- function(input, output) {
            and Obstacle they should expect in their journey") 
   })
   
+  # creates a table that produces a table which shows obstacles per specific round
   output$table <- renderTable({
     filtered <- df %>% filter(Location == input$location, Season == input$season, `Round/Stage` == input$round)
     out <- filtered %>% select(`Obstacle Name`, `Obstacle Order`)
     print(out)
   })
   
-  output$conclusionText <- renderText({
-    paste("With the information we have have provided, you will become the next American Ninja Warrior! You are now well 
-          aware of how to prepare and train, what obstacles you might expect to come across, and in what season it is most common.
-          In the future will will provide you with more information that will help you proceed on your journey. Such as, finding new
-          data sets that include severity of obstacles, to see how challenging each round is, and the average time needed to complete. 
-          We will also expand our dataset to include latitude and longitude values that can prepare a map for a more interactive, 
-          and easy to comprehend visual interface.")
-  })
-  
+  # describes the table that was rendered
   output$text <- renderText({
     "Are you looking for specific information about how to train for American Ninja Warrior?
     You've come to the right place! Here is a detailed list about obstacles in the exact order 
@@ -85,4 +80,26 @@ server <- function(input, output) {
     after you have crushed the last obstacle."
   })
   
+  # concludes the project 
+  output$conclusionText <- renderText({
+    paste("With the information we have have provided, you will become the next American Ninja Warrior! You are now well 
+          aware of how to prepare and train, what obstacles you might expect to come across, and in what season it is most common.
+          In the future will will provide you with more information that will help you proceed on your journey. Such as, finding new
+          data sets that include severity of obstacles, to see how challenging each round is, and the average time needed to complete. 
+          We will also expand our dataset to include latitude and longitude values that can prepare a map for a more interactive, 
+          and easy to comprehend visual interface.")
+  })
+  
+<<<<<<< HEAD
+  output$text <- renderText({
+    "Are you looking for specific information about how to train for American Ninja Warrior?
+    You've come to the right place! Here is a detailed list about obstacles in the exact order 
+    they come in for a specifc season,round, and location. This provides for excellent training
+    opportunities to know exactly
+    which obstacles come after one another so that you are able to train with perfect transitions
+    after you have crushed the last obstacle."
+  })
+  
+=======
+>>>>>>> e8044f49d51cd8956277dcf1e63385de0be7722c
 }
