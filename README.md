@@ -1,5 +1,5 @@
 # American Ninja Warrior
-Assignment link:  
+Assignment link: https://bellaeriksen.shinyapps.io/mclovin/  
 
 ## Purpose:
 
