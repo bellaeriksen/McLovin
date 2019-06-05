@@ -7,7 +7,7 @@ library("readxl")
 GET("https://query.data.world/s/ymhlkbigf63uimejlhgmmwbnucwbly", write_disk(tf <- tempfile(fileext = ".xlsx")))
 df <- read_excel(tf)
 
-# filters so that it gives a data frame that displays all the unique occurences of each Obstacle
+# filters so that it gives a data frame that displays all the unique occurences of each obstacle
 getObstacle <- df %>% select("Obstacle Name")
 uniqueObstacle <- unique(getObstacle)
 uniqueList <- uniqueObstacle$`Obstacle Name`
